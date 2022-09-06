@@ -6,7 +6,7 @@
 from collections import deque
 
 
-# A class to store a binary tree node
+# Clase
 class Node:
 	def __init__(self, data, left=None, right=None):
 		self.data = data
@@ -14,21 +14,20 @@ class Node:
 		self.right = right
 
 
-# Function to print level order traversal of a perfect binary tree
+# Nivel
 def levelOrderTraversal(root):
 
 	if root is None:
 		return
 
-	# create an empty queue and enqueue the root node
+	# Creamos una queue con el nodo raiz
 	queue = deque()
 	queue.append(root)
 
-	# loop till queue is empty
+	# hacemos un ciclo hasta que la lista este vacia
 	while queue:
 
-		# process each node in the queue and enqueue their
-		# non-empty left and right child
+		# hacemos que para cada nodo en cola se pongan en la cola sus nodos derecho e izquierdo no vacios
 		curr = queue.popleft()
 		print(curr.data, end=' ')
 
@@ -39,32 +38,30 @@ def levelOrderTraversal(root):
 			queue.append(curr.right)
 
 
-# Recursive function to invert alternate levels of a perfect binary tree
-# using preorder traversal
+# Funcion recursiva para invertir los niveles del arbol
+# Usamos preorden
 def invertBinaryTree(first, second, level):
 
-	# return if either child is empty
+	# Retornamos si esta vacio
 	if first is None or second is None:
 		return
 
-	# swap data only if the level is odd
+	# cambiamos los datos si es par
 	if level:
 		temp = first.data
 		first.data = second.data
 		second.data = temp
 
-	# recur with the left child of `first` and the right child of
-	# `second` with an updated level
+	# llamamos la funcion con el hijo izquierdo del primero y el hijo deerecho del segundo
 	invertBinaryTree(first.left, second.right, not level)
 
-	# recur with the right child of `first` and left child of
-	# `second` with an updated level
+	# Hacemos lo mismo al reves
 	invertBinaryTree(first.right, second.left, not level)
 
 
 def invertBT(root):
 
-	# base case
+	# funcion para llamar la reversion
 	if not root:
 		return
 
